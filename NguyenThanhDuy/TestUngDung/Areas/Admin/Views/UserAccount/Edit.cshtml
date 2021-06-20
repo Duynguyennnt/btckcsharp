@@ -1,0 +1,98 @@
+﻿@model ModelEF.Model.UserAccount
+@{
+    ViewBag.Title = "Edit";
+    Layout = "~/Areas/Admin/Views/Shared/_Layout.cshtml";
+}
+<style>
+    .actioncreate {
+        margin-bottom: 10px;
+    }
+
+        .actioncreate a {
+            border: none;
+            padding: 5px 10px;
+            border-radius: 5px;
+            background: #4e73df;
+            color: #fff;
+            text-decoration: none;
+            transition: .6s;
+        }
+
+            .actioncreate a:hover {
+                background: blue;
+                transition: .6s;
+            }
+
+    .inputuao{
+        display:flex;
+        align-items:baseline;
+    }
+    .inputuao input {
+        height: calc(1.5em + .75rem + 2px);
+        padding: .375rem .75rem;
+        font-size: 1rem;
+        font-weight: 400;
+        line-height: 1.5;
+        color: #6e707e;
+        background-color: #fff;
+        background-clip: padding-box;
+        border: 1px solid #d1d3e2;
+        border-radius: .35rem;
+        width:30%;
+    }
+
+        .inputuao input:focus {
+            outline: none;
+        }
+
+    .btnclick input {
+        transition: .6s;
+    }
+
+        .btnclick input:hover {
+            background: blue;
+            transition: .6s;
+            color: #fff;
+        }
+</style>
+@using (Html.BeginForm("Edit", "UserAccount", FormMethod.Post))
+{
+    @Html.AntiForgeryToken()
+
+<div class="form-horizontal">
+    <h4>Cập nhật tài khoản</h4>
+    <hr />
+    @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+
+    <div class="form-group inputuao">
+        @Html.LabelFor(model => model.UserName, htmlAttributes: new { @class = "control-label col-md-2" })
+        @Html.TextBoxFor(model => model.UserName, new { @class = "form-control", required = "required" })
+        @Html.ValidationMessageFor(model => model.UserName, "", new { @class = "text-danger" })
+    </div>
+
+    <div class="form-group inputuao">
+        @Html.LabelFor(model => model.Password, htmlAttributes: new { @class = "control-label col-md-2" })
+        @Html.TextBoxFor(model => model.Password, new { @class = "form-control" ,required = "required" })
+        @Html.ValidationMessageFor(model => model.Password, "", new { @class = "text-danger" })
+    </div>
+    <div class="form-group inputuao">
+        @Html.LabelFor(model => model.Status, htmlAttributes: new { @class = "control-label col-md-2" })
+            @Html.DropDownListFor(model => model.Status, new List<SelectListItem>
+       {
+            new SelectListItem {Text = "Hiển Thị", Value = "1"},
+            new SelectListItem {Text = "Ẩn", Value = "0"}
+       }, new { @class = "form-control" })
+            @Html.ValidationMessageFor(model => model.Status, "", new { @class = "text-danger" })
+    </div>
+
+    <div class="form-group">
+        <div class="offset-3 btnclick">
+            <input style="border: 1px solid;" type="submit" value="Cập nhật" class="btn btn-default" />
+        </div>
+    </div>
+</div>
+}
+
+<div class="actioncreate">
+    @Html.ActionLink("Trở lại", "Index")
+</div>

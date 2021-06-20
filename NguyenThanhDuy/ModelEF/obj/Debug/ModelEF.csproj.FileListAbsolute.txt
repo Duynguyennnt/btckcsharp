@@ -1,0 +1,16 @@
+D:\Hk220\Csharp\ProjectFinal\NguyenThanhDuy\ModelEF\bin\Debug\ModelEF.dll.config
+D:\Hk220\Csharp\ProjectFinal\NguyenThanhDuy\ModelEF\bin\Debug\ModelEF.dll
+D:\Hk220\Csharp\ProjectFinal\NguyenThanhDuy\ModelEF\bin\Debug\ModelEF.pdb
+D:\Hk220\Csharp\ProjectFinal\NguyenThanhDuy\ModelEF\bin\Debug\EntityFramework.dll
+D:\Hk220\Csharp\ProjectFinal\NguyenThanhDuy\ModelEF\bin\Debug\EntityFramework.SqlServer.dll
+D:\Hk220\Csharp\ProjectFinal\NguyenThanhDuy\ModelEF\bin\Debug\EntityFramework.xml
+D:\Hk220\Csharp\ProjectFinal\NguyenThanhDuy\ModelEF\bin\Debug\EntityFramework.SqlServer.xml
+D:\Hk220\Csharp\ProjectFinal\NguyenThanhDuy\ModelEF\obj\Debug\ModelEF.csprojAssemblyReference.cache
+D:\Hk220\Csharp\ProjectFinal\NguyenThanhDuy\ModelEF\obj\Debug\ModelEF.csproj.CoreCompileInputs.cache
+D:\Hk220\Csharp\ProjectFinal\NguyenThanhDuy\ModelEF\obj\Debug\ModelEF.csproj.CopyComplete
+D:\Hk220\Csharp\ProjectFinal\NguyenThanhDuy\ModelEF\obj\Debug\ModelEF.dll
+D:\Hk220\Csharp\ProjectFinal\NguyenThanhDuy\ModelEF\obj\Debug\ModelEF.pdb
+D:\Hk220\Csharp\ProjectFinal\NguyenThanhDuy\ModelEF\bin\Debug\PagedList.dll
+D:\Hk220\Csharp\ProjectFinal\NguyenThanhDuy\ModelEF\bin\Debug\PagedList.Mvc.dll
+D:\Hk220\Csharp\ProjectFinal\NguyenThanhDuy\ModelEF\bin\Debug\PagedList.xml
+D:\Hk220\Csharp\ProjectFinal\NguyenThanhDuy\ModelEF\bin\Debug\PagedList.Mvc.xml

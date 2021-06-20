@@ -1,0 +1,143 @@
+﻿@model ModelEF.Model.Product
+
+@{
+    ViewBag.Title = "Create";
+    var aut = (List<ModelEF.Model.Category>)ViewBag.type;
+    Layout = "~/Areas/Admin/Views/Shared/_Layout.cshtml";
+}
+<style>
+    .actioncreate {
+        margin-bottom: 10px;
+    }
+
+        .actioncreate a {
+            border: none;
+            padding: 5px 10px;
+            border-radius: 5px;
+            background: #4e73df;
+            color: #fff;
+            text-decoration: none;
+            transition: .6s;
+        }
+
+            .actioncreate a:hover {
+                background: blue;
+                transition: .6s;
+            }
+
+    .inputuao {
+        display: flex;
+        align-items: baseline;
+    }
+
+        .inputuao input {
+            height: calc(1.5em + .75rem + 2px);
+            padding: .375rem .75rem;
+            font-size: 1rem;
+            font-weight: 400;
+            line-height: 1.5;
+            color: #6e707e;
+            background-color: #fff;
+            background-clip: padding-box;
+            border: 1px solid #d1d3e2;
+            border-radius: .35rem;
+            width: 30%;
+        }
+        .inputuao select {
+            width: 30%;
+        }
+
+            .inputuao input:focus {
+                outline: none;
+            }
+
+    .btnclick input {
+        transition: .6s;
+    }
+
+        .btnclick input:hover {
+            background: blue;
+            transition: .6s;
+            color: #fff;
+        }
+</style>
+@using (Html.BeginForm("Create", "Product", FormMethod.Post, new { enctype = "multipart/form-data" }))
+{
+    @Html.AntiForgeryToken()
+
+    <div class="form-horizontal">
+        <h4>Thêm Sản Phẩm</h4>
+        <hr />
+        @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+        <div class="form-group">
+            <div class="col-md-10">
+                <input type="hidden" class="form-control" id="ID" name="Name" disabled />
+            </div>
+        </div>
+        <div class="form-group inputuao">
+            @Html.LabelFor(model => model.Name, htmlAttributes: new { @class = "control-label col-md-2" })
+            @Html.TextBoxFor(model => model.Name,new { @class = "form-control" })
+            @Html.ValidationMessageFor(model => model.Name, "", new { @class = "text-danger" })
+        </div>
+        <div class="form-group inputuao">
+            @Html.LabelFor(model => model.Description, htmlAttributes: new { @class = "control-label col-md-2" })
+            @Html.TextBoxFor(model => model.Description, new { @class = "form-control"})
+            @Html.ValidationMessageFor(model => model.Description, "", new { @class = "text-danger" })
+
+        </div>
+
+        <div class="form-group">
+            <div class="row">
+                <div class="col-md-2">
+                    <label style="padding-left: 13px;">Hình Ảnh</label>
+
+                </div>
+                <div class="col-md-4">
+                    <input type="file" id="Images" name="Images" accept="image/*" />
+                </div>
+            </div>
+        </div>
+
+        <div class="form-group inputuao">
+            @Html.LabelFor(model => model.UnitCost, htmlAttributes: new { @class = "control-label col-md-2" })
+            @Html.TextBoxFor(model => model.UnitCost, new { @class = "form-control"})
+            @Html.ValidationMessageFor(model => model.UnitCost, "", new { @class = "text-danger" })
+
+        </div>
+
+        <div class="form-group inputuao">
+            @Html.LabelFor(model => model.Quantity, htmlAttributes: new { @class = "control-label col-md-2" })
+            @Html.TextBoxFor(model => model.Quantity,new { @class = "form-control"})
+            @Html.ValidationMessageFor(model => model.Quantity, "", new { @class = "text-danger" })
+
+        </div>
+
+        <div class="form-group inputuao">
+            @Html.LabelFor(model => model.IDCategory, htmlAttributes: new { @class = "control-label col-md-2" })
+            @Html.DropDownListFor(model => model.IDCategory, null, new { @class = "form-control"})
+            @Html.ValidationMessageFor(model => model.IDCategory, "", new { @class = "text-danger" })
+        </div>
+
+        <div class="form-group inputuao">
+            @Html.LabelFor(model => model.Status, htmlAttributes: new { @class = "control-label col-md-2" })
+                @Html.DropDownListFor(model => model.Status, new List<SelectListItem>
+           {
+                new SelectListItem {Text = "Hiển Thị", Value = "1"},
+                new SelectListItem {Text = "Ẩn", Value = "0"}
+           }, new { @class = "form-control" })
+                @Html.ValidationMessageFor(model => model.Status, "", new { @class = "text-danger" })
+        </div>
+
+        <div class="form-group">
+            <div class="offset-3 btnclick">
+                <input style="border: 1px solid;" type="submit" value="Tạo mới" class="btn btn-default" />
+            </div>
+        </div>
+    </div>
+}
+
+<div class="actioncreate">
+    @Html.ActionLink("Trở lại", "Index")
+</div>
+
+

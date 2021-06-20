@@ -1,0 +1,277 @@
+﻿@model List<ModelEF.ModelCustomer.ProductCustomer>
+
+@{
+    ViewBag.Title = "Index";
+    Layout = "~/Areas/Admin/Views/Shared/_Layout.cshtml";
+}
+<script src="https://cdn.jsdelivr.net/npm/sweetalert2@9"></script>
+<style>
+    .example button {
+        float: left;
+        background-color: #4E3E55;
+        color: white;
+        border: none;
+        box-shadow: none;
+        font-size: 17px;
+        font-weight: 500;
+        font-weight: 600;
+        border-radius: 3px;
+        padding: 15px 35px;
+        margin: 26px 5px 0 5px;
+        cursor: pointer;
+    }
+
+        .example button:focus {
+            outline: none;
+        }
+
+        .example button:hover {
+            background-color: #33DE23;
+        }
+
+        .example button:active {
+            background-color: #81ccee;
+        }
+
+    .swal2-popup {
+        width: 25em;
+        padding: 1em;
+        font-size: 0.8rem;
+    }
+
+    .swal2-title {
+        font-size: 1.4em;
+    }
+
+    .swal2-styled.swal2-confirm {
+        font-size: .9em;
+    }
+
+    .swal2-styled.swal2-cancel {
+        font-size: .9em;
+    }
+
+    .clickdelete {
+        cursor: pointer;
+    }
+
+    .searchf input:focus {
+        outline: none;
+    }
+
+    .pagination .active {
+        padding: 3px 10px;
+        background: #4b71dd;
+        border-radius: 6px;
+        margin-right: 5px;
+        color: #fff;
+    }
+
+    .pagination li {
+        padding: 3px 10px;
+        border-radius: 6px;
+        margin-right: 5px;
+    }
+
+        .pagination li a {
+            text-decoration: none;
+        }
+
+        .pagination li:hover {
+            background: #4b71dd;
+            border-radius: 6px;
+            margin-right: 5px;
+        }
+
+    .action-more .updatet {
+        background: #4e73df;
+        color: #fff;
+        padding: 3px 11px;
+        border-radius: 7px;
+        transition: .6s;
+    }
+
+        .action-more .updatet:hover {
+            background: blue;
+            transition: .6s;
+        }
+
+    .action-more .clickdelete {
+        background: red;
+        color: #fff;
+        padding: 3px 11px;
+        border-radius: 7px;
+        transition: .6s;
+    }
+
+        .action-more .clickdelete:hover {
+            background: #b60000;
+            transition: .6s;
+        }
+
+    .action-more a {
+        text-decoration: none;
+    }
+
+    .pagination li a {
+        text-decoration: none;
+    }
+
+    .pagination li:hover {
+        background: #4b71dd;
+        border-radius: 6px;
+        margin-right: 5px;
+    }
+
+    .form-seach {
+        height: calc(1.5em + .75rem + 2px);
+        padding: .375rem .75rem;
+        font-size: 1rem;
+        font-weight: 400;
+        line-height: 1.5;
+        color: #6e707e;
+        background-color: #fff;
+        background-clip: padding-box;
+        border: 1px solid #d1d3e2;
+        border-radius: .35rem;
+    }
+
+    .form-seachbtn {
+        border: none;
+        padding: 5px 10px;
+        border-radius: 5px;
+        background: #4e73df;
+        color: #fff;
+        transition: .6s;
+    }
+
+        .form-seachbtn:hover {
+            background: blue;
+            transition: .6s;
+        }
+
+    .actioncreate a {
+        border: none;
+        padding: 5px 10px;
+        border-radius: 5px;
+        background: #4e73df;
+        color: #fff;
+        text-decoration: none;
+        transition: .6s;
+    }
+
+        .actioncreate a:hover {
+            background: blue;
+            transition: .6s;
+        }
+
+    .pagination li:hover a {
+        color: #fff;
+    }
+</style>
+<div class="d-sm-flex align-items-center justify-content-between mb-4">
+    <h1 class="h3 mb-0 text-gray-800">Sản Phẩm</h1>
+    <div class="actioncreate">
+        @Html.ActionLink("Tạo mới Sản Phẩm", "Create")
+    </div>
+</div>
+<hr />
+@using (Html.BeginForm("Index", "Product", FormMethod.Get))
+{
+    <row>
+        <div class="col-12 py-1 searchf" style="text-align:end">
+            <input class="form-seach" type="text" name="seach" value="@ViewBag.seach" 
+                   placeholder="Nhập nội dung tìm kiếm..." />
+            <button class="form-seachbtn" type="submit">Tìm kiếm</button>
+        </div>
+    </row>
+}
+
+<!-- DataTales Example -->
+<div class="card shadow mb-4">
+    <div class="card-body">
+        <div class="table-responsive">
+            <table class="table table-bordered" id="dataTable1" width="100%" cellspacing="0">
+                <thead>
+                    <tr>
+                        <th>ID</th>
+                        <th>Tên sản phẩm</th>
+                        <th>Đơn giá</th>
+                        <th>Số lượng</th>
+                        <th>Tên loại</th>
+                        <th>Hình ảnh</th>
+                        <th>Mô tả</th>
+                        <th>Trạng thái</th>
+                        <th>Thao tác</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    @foreach (var item in Model)
+                    {
+                        <tr id="rowct_@item.ID">
+                            <td>@item.ID</td>
+                            <td>@item.Name</td>
+                            <td>@string.Format("{0:0,0.}", item.UnitCost) &nbsp;VND</td>
+                            <td>@item.Quantity</td>
+                            <td>@item.CategoryName</td>
+                            <td><img style="max-width: 100px" src="~/Assets/Admin/Images/@item.Images" /></td>
+                            <td>@item.Description</td>
+                            @if (item.Status == 1)
+                            {
+                                <td>Hiện</td>
+                            }
+                            else
+                            {
+                                <td>Ẩn</td>
+                            }
+                            <td class="action-more">
+                                @Html.ActionLink("Sửa", "Edit", new { id = item.ID }, new { @class = "updatet" })
+                                |
+                                <a class="clickdelete" onclick="showdial(@item.ID)">xóa</a>
+                            </td>
+                        </tr>
+                    }
+
+                </tbody>
+            </table>
+        </div>
+    </div>
+</div>
+<div class="actioncreate">
+    @Html.ActionLink("Trở lại", "Index")
+</div>
+<script>
+    function showdial(id) {
+        Swal.fire({
+            title: 'Bạn có chắc chắn muốn xóa',
+            icon: 'warning',
+            showCancelButton: true,
+            confirmButtonColor: '#3085d6',
+            cancelButtonColor: '#d33',
+            confirmButtonText: 'Đồng ý',
+            cancelButtonText: 'Hủy',
+        }).then((result) => {
+            if (result.value) {
+                $.ajax({
+                    type: "POST",
+                    url: "/Admin/Product/Delete",
+                    data: { productid: id },
+                    success: function (result) {
+                        Swal.fire(
+                            'Thành Công!',
+                            'Bạn đã xóa thành công',
+                            'success'
+                        );
+                        $("#rowct_" + id).remove();
+                    }
+                })
+
+            }
+        })
+    }
+</script>
+
+
+
+
+
